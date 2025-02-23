@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=960, initial-scale=1.0">
+    <title>Intro</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Jersey+25&family=Tiny5&family=Titillium+Web:ital,wght@0,200;0,300;1,200;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        /* Set the 960x540 px area */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: left;
+            align-items: top;
+            height: 100vh;
+            background-color: white; 
+        }
+
+        /* Main wrapper with fixed size */
+        .scene {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            background: url('are-you-awake.png') no-repeat center center;
+            background-size: cover;
+        }
+
+        /* Talking K8 image */
+        .character {
+            position: absolute;
+            left: 500px;  
+            top: 200px;   
+            width: 150px; 
+            height: auto;
+        }
+
+        /* Speech bubble */
+        .speech-box {
+            position: absolute;
+            left: 550px;  
+            top: 130px;   
+            width: 200px;
+            padding: 15px;
+            background: #57a0d3;
+            border-radius: 20px;
+            color: white;
+            font-family: 'Jersey 25', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            text-align: center;
+            position: relative; /* Positioning of tail */
+            animation: float 2s ease-in-out infinite;
+        }
+
+        /* Speech bubble tail */
+        .speech-box::before {
+            content: "";
+            position: absolute;
+            bottom: -16px; 
+            left: 20px; 
+            width: 0;
+            height: 0;
+            border-left: 16px solid transparent;
+            border-right: 16px solid transparent;
+            border-top: 16px solid #57a0d3;
+            animation: float 2s ease-in-out infinite;
+        }
+
+         /* Player speech box */
+         .bottom-box {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%; 
+            height: 55px; 
+            background: black;
+            border: 0px solid #57a0d3;
+            border-radius: 20px;
+        }
+
+        /* Floating ZZZ */
+        .zzz {
+            position: absolute;
+            font-size: 16px;
+            color: lightgray;
+            font-family: 'Jersey 25', sans-serif;
+            opacity: 0.3;
+            animation: floatZ 2s infinite ease-in-out;
+        }
+
+        /* Floating animation */
+        @keyframes floatZ {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+        }
+
+        /* Floating animayion - speech bubble */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Click anywhere to continue */
+        .footer {
+            position: absolute;
+            bottom: 20px; 
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Jersey 25', sans-serif;
+            font-size: 16px;
+            color: white;
+            opacity: 0; 
+            animation: fadeIn 1s ease-in forwards;
+            animation-delay: 1s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+    </style>
+    
+</head>
+<body>
+
+    <div class="scene">
+        <img src="talking-k8.png" alt="K8 Character" class="character">
+        <div class="speech-box">Wake up, wake up!</div>
+        <div class="bottom-box"></div>
+        <footer class="footer"><i>Click anywhere to continue.</i></footer>
+    </div>
+
+    <!-- Floating ZZZ Text -->
+    <div class="zzz" style="left: 350px; top: 160px;">Z...</div>
+    <div class="zzz" style="left: 333px; top: 189px; animation-delay: 0.5s;">Z...</div>
+    <div class="zzz" style="left: 300px; top: 200px; animation-delay: 1s;">Z...</div>
+    </div>
+
+    <!-- Lead to next page -->
+    <script>
+        document.querySelector(".scene").addEventListener("click", function() {
+            window.location.href = "01.html";
+        });
+    </script>
+
+</body>
+</html>

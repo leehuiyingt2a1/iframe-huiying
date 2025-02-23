@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=960, initial-scale=1.0">
+    <title>Obtain Virus Suit</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Jersey+25&family=Tiny5&family=Titillium+Web:ital,wght@0,200;0,300;1,200;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        /* Set the 960x540 px area */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: left;
+            align-items: top;
+            height: 100vh;
+            background-color: white; 
+        }
+
+        /* Main wrapper with fixed size */
+        .scene {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            background-color: #c0d1cc;
+            background-size: cover;
+        }
+
+        /* K8 speech box */
+        .bottom-box-k8 {
+            position: absolute;
+            bottom: 320px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%; 
+            height: 55px; 
+            background: #1f2244;
+            border: 3px solid #d86a85;
+            border-radius: 20px;
+            color: white;
+            font-family: 'Jersey 25', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            text-align:center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            white-space: nowrap; /* Prevents wrapping of text */
+            flex-direction: column; /* Stack the lines vertically */
+        }
+
+        /* Space between K8 and text */
+        .bottom-box-k8 i {
+            padding-right: 15px; 
+            color: #d86a85;
+        }
+
+        /* Ensure the K8 and text part are on different lines */
+        .bottom-box-k8 .top-line {
+            display: inline-block;
+        }
+
+        .bottom-box-k8 .bottom-line {
+            display: block;
+            padding-top: 5px;
+        }
+
+        @keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+        /* Button styles */
+        .buttons {
+            position: absolute;
+            bottom: -150px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in 1s forwards;
+        }
+
+        .button {
+            background-color: white;
+            border: 3px solid #57a0d3; 
+            color: black;
+            font-family: 'Jersey 25', sans-serif;
+            text-align: center;
+            letter-spacing: 1px;
+            font-size: 20px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.3s;
+
+            display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center;
+        }
+
+        .button:hover {
+            background: #a8d6f8;
+        }
+
+    </style>
+    
+</head>
+
+<script>
+    // event listeners for buttons
+    document.addEventListener('DOMContentLoaded', function() {
+        const allOfTheAboveButton = document.querySelectorAll('.button')[2]; // "All of the above"
+        const otherButtons = document.querySelectorAll('.button'); // The other two buttons
+
+        // Redirect for the "All of the above" button
+        allOfTheAboveButton.addEventListener('click', function() {
+            window.location.href = "20-a.html"; // Redirect to 20-a.html
+        });
+
+        // Redirect for the other buttons
+        otherButtons.forEach(button => {
+            if (button !== allOfTheAboveButton) {
+                button.addEventListener('click', function() {
+                    window.location.href = "20-b.html"; // Redirect to 20-b.html
+                });
+            }
+        });
+    });
+</script>
+
+
+<body>
+    <div class="scene">
+        <div class="bottom-box-k8" id="speech-box">
+            <span class="top-line"><i>K8:</i> The 'U' in S.U.R.E. stands for "Understanding".</span>
+            <span class="bottom-line">AI-generated content isn’t always fake news. What’s the best approach to this?</span>
+
+            <!-- Buttons -->
+        <div class="buttons">
+            <div class="button">Ignore AI content altogether.</div>
+            <div class="button">Assume all AI-generated <br>content is false.</div>
+            <div class="button">Understand the context <br>and intent behind <br>the content.</div>
+        </div>                      
+    </div>
+
+    <!-- Lead to next page -->
+    
+
+
+</body>
+</html>

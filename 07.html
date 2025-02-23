@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=960, initial-scale=1.0">
+    <title>Gather Tools</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Jersey+25&family=Tiny5&family=Titillium+Web:ital,wght@0,200;0,300;1,200;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        /* Set the 960x540 px area */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: left;
+            align-items: top;
+            height: 100vh;
+            background-color: white; 
+        }
+
+        /* Main wrapper with fixed size */
+        .scene {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            background-color: #c0d1cc;
+            background-size: cover;
+        }
+
+        /* toolbox img positioning */
+        .scene img {
+            position: absolute;
+            top: 60%;
+            left: 48%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: auto;
+        }
+
+        /* Fade-in effect */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+
+        .axe {
+            position: absolute;
+            top: 110px !important;
+            left: 26% !important;
+            transform: translate(-50%, -50%);
+            width: 100px !important;
+            height: auto;
+            animation-delay: 1s;
+        }
+
+        .shovel {
+            position: absolute;
+            top: 110px !important;
+            left: 51.5% !important;
+            transform: translate(-50%, -50%);
+            width: 93px !important;
+            height: auto;
+            animation-delay: 2s;
+        }
+
+        .sickle {
+            position: absolute;
+            top: 110px !important;
+            left: 76% !important;
+            transform: translate(-50%, -50%);
+            width: 89px !important;
+            height: auto;
+            animation-delay: 3s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Captions for each image */
+        .caption {
+            position: absolute;
+            font-family: 'Jersey 25', sans-serif;
+            color: #1f2244;
+            background-color: #d86a85;
+            font-size: 16px;
+            text-align: center;
+            width: 100px;
+            top: 30%;
+            padding: 5px 10px;
+            border-radius: 10px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        .axe-caption {
+            left: 20%;
+            animation-delay: 1s;
+        }
+
+        .shovel-caption {
+            left: 45%;
+            animation-delay: 2s;
+        }
+
+        .sickle-caption {
+            left: 70%;
+            animation-delay: 3s;
+        }
+
+        /* K8 speech box */
+        .bottom-box-k8 {
+            position: absolute;
+            bottom: 13px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%; 
+            height: 55px; 
+            background: #1f2244;
+            border: 3px solid #d86a85;
+            border-radius: 20px;
+            color: white;
+            font-family: 'Jersey 25', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            text-align:center;
+            display: flex;  /* Always visible immediately */
+            align-items:center;
+            justify-content: center;
+            padding-bottom: 3px;
+            white-space: nowrap; /* Prevents wrapping of text */
+        }
+
+        /* Space between K8 and text */
+        .bottom-box-k8 i {
+            padding-right: 15px; 
+            color: #d86a85;
+        }
+
+    </style>
+    
+</head>
+
+<body>
+
+    <div class="scene">
+        <!-- Images with fade-in animation and captions -->
+        <img src="axe.png" alt="Axe" class="axe fade-in">
+        <div class="caption axe-caption">Text Generation</div>
+
+        <img src="shovel.png" alt="Shovel" class="shovel fade-in">
+        <div class="caption shovel-caption">Image Generation</div>
+
+        <img src="sickle.png" alt="Sickle" class="sickle fade-in">
+        <div class="caption sickle-caption">Music Composition</div>
+
+        <img src="toolbox.png" alt="Toolbox">
+        <div class="bottom-box-k8" id="speech-box">
+            <i>K8:</i><span id="typing-text">It's like a giant toolbox, with different tools for different tasks like...</span>
+        </div>                      
+    </div>
+
+
+    
+    <!-- Lead to next page -->
+    <script>
+        document.querySelector(".scene").addEventListener("click", function() {
+            window.location.href = "08.html";
+        });
+    </script>
+
+</body>
+</html>

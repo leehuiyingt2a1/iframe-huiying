@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=960, initial-scale=1.0">
+    <title>Intro</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Jersey+25&family=Tiny5&family=Titillium+Web:ital,wght@0,200;0,300;1,200;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        /* Set the 960x540 px area */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: left;
+            align-items: top;
+            height: 100vh;
+            background-color: white; 
+        }
+
+        /* Main wrapper with fixed size */
+        .scene {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            background: url('are-you-awake.png') no-repeat center center;
+            background-size: cover;
+        }
+
+        /* Talking K8 image */
+        .character {
+            position: absolute;
+            left: 500px;  
+            top: 200px;   
+            width: 150px; 
+            height: auto;
+        }
+
+        /* Player animation */
+        @keyframes fadePop {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) scaleX(-1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) scaleX(-1);
+            }
+        }
+
+        /* Player image */
+        .player {
+            position: absolute;
+            left: -50px;
+            top: 60px;
+            width: 600px;
+            height: auto;
+            transform:scaleX(-1);
+                opacity: 0; 
+                animation: fadePop 0.8s ease-out forwards;
+        }
+
+         /* Player speech box */
+         .bottom-box {
+            position: absolute;
+            bottom: 13px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%; 
+            height: 55px; 
+            background: lightcyan;
+            border: 3px solid #57a0d3;
+            border-radius: 20px;
+            color: black;
+            font-family: 'Jersey 25', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            text-align:center;
+                display: flex;
+                align-items:center;
+                justify-content: center;
+                padding-bottom: 3px;
+        }
+
+        /* Space between YOU and Where am I */
+        .bottom-box i {
+            padding-right: 15px; 
+            color: #57a0d3;
+        }
+    </style>
+    
+</head>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let text = " Where am I... What's happening?";
+        let index = 0;
+        let speed = 50; // Speed of typing in milliseconds
+        let element = document.getElementById("typing-text");
+
+        function typeWriter() {
+            if (index < text.length) {
+                element.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        setTimeout(typeWriter, 500); // Start typing after a short delay
+    });
+</script>
+
+
+<body>
+
+    <div class="scene">
+        <img src="talking-k8.png" alt="K8 Character" class="character">
+        <img src="player.png" alt="You" class="player">
+        <div class="bottom-box"></div>
+        <div class="bottom-box">
+            <i>YOU:</i><span id="typing-text"></span>
+        </div>                      
+    </div>
+
+
+    <!-- Lead to next page -->
+    <script>
+        document.querySelector(".scene").addEventListener("click", function() {
+            window.location.href = "02.html";
+        });
+    </script>
+
+</body>
+</html>

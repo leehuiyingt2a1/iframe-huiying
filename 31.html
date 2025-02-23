@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=960, initial-scale=1.0">
+    <title>Mix Healing Potion</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Jersey+25&family=Tiny5&family=Titillium+Web:ital,wght@0,200;0,300;1,200;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        /* Set the 960x540 px area */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: left;
+            align-items: top;
+            height: 100vh;
+            background-color: white; 
+        }
+
+        /* Main wrapper with fixed size */
+        .scene {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            background: url('lounge.jpg') no-repeat center center;
+            background-size: cover;
+        }
+
+        /* Talking K8 image */
+        .character {
+            position: absolute;
+            left: 600px;  
+            top: 288px;   
+            width: 140px; 
+            height: auto;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Speech bubble */
+        .speech-box {
+            position: absolute;
+            left: 600px;  
+            top: 210px;   
+            width: 200px;
+            padding: 15px;
+            background: #57a0d3;
+            border-radius: 20px;
+            color: white;
+            font-family: 'Jersey 25', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            text-align: center;
+            position: relative; /* Positioning of tail */
+            opacity: 0; 
+             animation: fadeIn 0.5s ease-in-out 0.5s forwards; 
+        }
+
+        /* Speech bubble tail */
+        .speech-box::before {
+            content: "";
+            position: absolute;
+            bottom: -16px; 
+            left: 20px; 
+            width: 0;
+            height: 0;
+            border-left: 16px solid transparent;
+            border-right: 16px solid transparent;
+            border-top: 16px solid #57a0d3;
+        }
+
+        /* Player image */
+        .player {
+            position: absolute;
+            left: 335px;
+            top: 230px;
+            width: 300px;
+            height: auto;
+        }   
+
+        .empty-bottle {
+            position: absolute;
+            left: 250px;
+            top: 330px;
+            width: 100px;
+            height: auto;animation: idle 2s ease-in-out infinite; 
+        }
+
+        @keyframes idle {
+            0% {
+                top: 330px;
+            }
+            50% {
+                top: 335px;
+            }
+            100% {
+                top: 330px;
+            }
+        }
+
+        /* ingredients around the bottle */
+        .item {
+            position: absolute;
+            width: 80px; 
+            height: auto;
+            opacity: 0;
+            animation: idle 2s ease-in-out infinite;
+        }
+
+        /* positioning of ingredient */
+        .coal {
+            left: 180px;
+            top: 250px;
+        }
+
+        .copper {
+            left: 100px;
+            top: 400px;
+        }
+
+        .crystal {
+            left: 340px;
+            top: 450px;
+        }
+
+        .jade {
+            left: 420px;
+            top: 400px;
+        }
+
+        .magmatic-rick {
+            left: 500px;
+            top: 250px;
+        }
+    </style>
+    
+</head>
+
+
+<body>
+    <div class="scene" id="scene">
+        <img src="talking-k8.png" alt="K8 Character" class="character">
+        <img src="bottle.png" alt="Empty Potion Bottle" class="empty-bottle">
+        <div class="speech-box" id="speech">To make the healing potion, we only need five ingredients.</div>
+        <img src="player.png" alt="You" class="player">
+
+        <img src="coal.png" alt="Coal" class="item coal">
+        <img src="copper.png" alt="Copper" class="item copper">
+        <img src="crystal.png" alt="Crystal" class="item crystal">
+        <img src="jade.png" alt="Jade" class="item jade">
+        <img src="magmatic-rick.png" alt="Magmatic Rick" class="item magmatic-rick">
+    </div>
+
+    <script>
+        let clickCount = 0; // Counter to track the number of clicks
+
+        document.getElementById("scene").addEventListener("click", function() {
+            clickCount++; // Increment click count
+
+            if (clickCount === 1) {
+                // Change the speech bubble text after the first click
+                document.getElementById("speech").textContent = "They are Persona, Task, Audience, Context and Format!";
+
+                //ingredient images fade in
+                const items = document.querySelectorAll('.item');
+                items.forEach(item => {
+                    item.style.opacity = 1;  
+                });
+            } else if (clickCount === 2) {
+                window.location.href = "32.html";
+            }
+        });
+    </script>
+
+    <!-- Lead to next page -->
+
+
+</body>
+</html>

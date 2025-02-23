@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=960, initial-scale=1.0">
+    <title>Gather Tools</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Jersey+25&family=Tiny5&family=Titillium+Web:ital,wght@0,200;0,300;1,200;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        /* Set the 960x540 px area */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: left;
+            align-items: top;
+            height: 100vh;
+            background-color: white; 
+        }
+
+        /* Main wrapper with fixed size */
+        .scene {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            background: url('brain-scan.gif') no-repeat center center;
+            background-size: cover;
+        }
+
+        /* Talking K8 image */
+        .character {
+            position: absolute;
+            left: 331px;  
+            top: 288px;   
+            width: 130px; 
+            height: auto;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Speech bubble */
+        .speech-box {
+            position: absolute;
+            left: 360px;  
+            top: 210px;   
+            width: 200px;
+            padding: 15px;
+            background: #57a0d3;
+            border-radius: 20px;
+            color: white;
+            font-family: 'Jersey 25', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            text-align: center;
+            position: relative; /* Positioning of tail */
+            opacity: 0; 
+             animation: fadeIn 0.5s ease-in-out 0.5s forwards; 
+        }
+
+        /* Speech bubble tail */
+        .speech-box::before {
+            content: "";
+            position: absolute;
+            bottom: -16px; 
+            left: 20px; 
+            width: 0;
+            height: 0;
+            border-left: 16px solid transparent;
+            border-right: 16px solid transparent;
+            border-top: 16px solid #57a0d3;
+        }
+
+        /* Player image */
+        .player {
+            position: absolute;
+            left: 695px;
+            top: 135px;
+            width: 300px;
+            height: auto;
+            transform: rotate(90deg);
+            filter: hue-rotate(140deg) saturate(0.8) brightness(0.85);
+            animation: vibrate 0.1s infinite linear;
+        }
+
+        @keyframes vibrate {
+            0% { transform: rotate(90deg) translate(0, 0); }
+            25% { transform: rotate(90deg) translate(2px, -2px); }
+            50% { transform: rotate(90deg) translate(-2px, 2px); }
+            75% { transform: rotate(90deg) translate(2px, 2px); }
+            100% { transform: rotate(90deg) translate(-2px, -2px); }
+        }
+
+        /* Player speech box */
+        .bottom-box {
+            position: absolute;
+            bottom: 13px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%; 
+            height: 55px; 
+            background: lightcyan;
+            border: 3px solid #57a0d3;
+            border-radius: 20px;
+            color: black;
+            font-family: 'Jersey 25', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            text-align:center;
+                display: none;
+                align-items:center;
+                justify-content: center;
+                padding-bottom: 3px;
+        }
+
+        /* Space between YOU and text */
+        .bottom-box i {
+            padding-right: 15px; 
+            color: #57a0d3;
+        }
+
+        /* Colour Generative AI */
+        .GenAI {
+            color: darkblue; 
+            font-weight: bold;
+        }
+    
+    </style>
+    
+</head>
+
+
+<script>
+    let clickCount = 0;
+    let isTypingDone = false; // Track if typing is finished
+
+    document.addEventListener("click", function() {
+        let speechBox = document.querySelector(".speech-box");
+        let playerSpeechBox = document.querySelector(".bottom-box");
+        let typingText = document.getElementById("typing-text");
+
+        if (clickCount === 0) {
+            speechBox.innerHTML = "Let's fix that first—can't save the world if you don't remember how it works!";
+        } else if (clickCount === 1) {
+            speechBox.innerHTML = "Ever heard of <span class='GenAI'>Generative AI?</span>";
+        } else if (clickCount === 2) {
+            // Show the player speech box on the third click
+            playerSpeechBox.style.display = "flex";
+            typeEffect(typingText, "Uh... maybe?", 50, () => {
+                isTypingDone = true; // Mark as done when typing completes
+            });
+        } else if (clickCount === 3 && isTypingDone) {
+            // Redirect to the next page when clicked again AFTER typing is finished
+            window.location.href= "04.html";
+        }
+
+
+        clickCount++; 
+    });
+
+    function typeEffect(element, text, speed, callback) {
+    element.innerHTML = ""; // Clear existing text
+    let i = 0;
+
+    function typing() {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typing, speed);
+        } else if (callback) {
+                callback(); // Call the callback function when typing is done
+            }
+        }
+
+        typing();
+    }
+</script>
+
+
+<body>
+
+    <div class="scene">
+        <img src="talking-k8.png" alt="K8 Character" class="character">
+        <div class="speech-box">Jeez... looks like your memories have been wiped!</div>
+        <img src="player.png" alt="You" class="player">
+        <div class="bottom-box">
+            <i>YOU:</i><span id="typing-text"></span>
+        </div>                      
+    </div>
+
+
+
+    <!-- Lead to next page -->
+
+
+</body>
+</html>

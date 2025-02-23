@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=960, initial-scale=1.0">
+    <title>Battle</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Jersey+25&family=Tiny5&family=Titillium+Web:ital,wght@0,200;0,300;1,200;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        /* Set the 960x540 px area */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: left;
+            align-items: top;
+            height: 100vh;
+            background-color: white; 
+        }
+
+        /* Main wrapper with fixed size */
+        .scene {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            background: url('battleground.jpg') no-repeat center center;
+            background-size: cover;
+        }
+
+        /* Player image */
+        .player {
+            position: absolute;
+            left: 120px;
+            top: 130px;
+            width: 330px;
+            height: auto;
+            transform: scaleX(-1);
+        }   
+
+        .axe {
+            position: absolute;
+            left: 750px;
+            top: 135px;
+            width: 100px;
+            height: auto;
+            z-index: 2;
+        }
+
+        .shovel {
+            position: absolute;
+            left: 700px;
+            top: 225px;
+            width: 70px;
+            height: auto;
+            z-index: 2;
+        }
+
+        .sickle {
+            position: absolute;
+            left: 800px;
+            top: 250px;
+            width: 70px;
+            height: auto;
+            z-index: 2;
+        }
+
+        /* V1X image */
+        .vix {
+            position: absolute;
+            left: 750px;
+            top: 135px;
+            width: 180px;
+            height: auto;
+            transform: rotate(90deg); /* Lying down */
+            z-index: 1;
+        }
+
+        /* Talking K8 image */
+        .character {
+            position: absolute;
+            left: 160px;  
+            top: 170px;   
+            width: 100px; 
+            height: auto;
+            transform: scaleX(-1);
+        }
+
+        /* K8 speech box */
+        .bottom-box-k8 {
+            position: absolute;
+            bottom: 13px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%; 
+            height: 55px; 
+            background: #1f2244;
+            border: 3px solid #d86a85;
+            border-radius: 20px;
+            color: white;
+            font-family: 'Jersey 25', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            text-align:center;
+            display: flex;  /* Always visible immediately */
+            align-items:center;
+            justify-content: center;
+            padding-bottom: 3px;
+            white-space: nowrap; /* Prevents wrapping of text */
+        }
+
+        /* Space between K8 and text */
+        .bottom-box-k8 i {
+            padding-right: 15px; 
+            color: #d86a85;
+        }
+    </style>
+    
+</head>
+
+
+<body>
+    <div class="scene" id="scene">
+        <img src="player.png" alt="You" class="player">
+        <img src="axe.png" alt="Axe" class="axe">
+        <img src="sickle.png" alt="Sickle" class="sickle">
+        <img src="shovel.png" alt="Shovel" class="shovel">
+        <img src="v1x.png" alt="V1X" class="vix">
+        <img src="talking-k8.png" alt="K8" class="character">
+        <div class="health-bar"></div>
+        <div class="bottom-box-k8" id="speech-box">
+            <i>K8:</i><span id="typing-text"></span>
+        </div>
+    </div>
+
+    <script>
+        let speechIndex = 0;
+        const speeches = [
+            "Well done! You have defeated V1X.",
+            "The world is safe from the misuse of Generative AI, thanks to you!"
+        ];
+    
+        function updateSpeech() {
+            const speechBox = document.getElementById("typing-text");
+    
+            if (speechIndex < speeches.length) {
+                speechBox.textContent = "";
+                let index = 0;
+                const text = speeches[speechIndex];
+    
+                const typingInterval = setInterval(() => {
+                    speechBox.textContent += text[index];
+                    index++;
+    
+                    if (index === text.length) {
+                        clearInterval(typingInterval);
+                    }
+                }, 50);
+                
+                speechIndex++;
+            } else {
+                // Redirect to 35.html on the third click
+                window.location.href = "44.html";
+            }
+        }
+    
+        // Add event listener to the entire document
+        document.body.addEventListener("click", updateSpeech);
+    
+        // Start first speech after delay
+        setTimeout(() => {
+            updateSpeech();
+        }, 1000);
+    </script>
+    
+
+    <!-- Lead to next page -->
+    
+
+
+</body>
+</html>

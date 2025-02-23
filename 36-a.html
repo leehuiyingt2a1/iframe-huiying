@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=960, initial-scale=1.0">
+    <title>Battle</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Jersey+25&family=Tiny5&family=Titillium+Web:ital,wght@0,200;0,300;1,200;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        /* Set the 960x540 px area */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: left;
+            align-items: top;
+            height: 100vh;
+            background-color: white; 
+        }
+
+        /* Main wrapper with fixed size */
+        .scene {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            background: url('battleground.jpg') no-repeat center center;
+            background-size: cover;
+        }
+
+        /* Player image */
+        .player {
+            position: absolute;
+            left: 120px;
+            top: 130px;
+            width: 330px;
+            height: auto;
+            transform: scaleX(-1)
+        }   
+
+        /* V1X image */
+        .vix {
+            position: absolute;
+            left: 760px;
+            top: 140px;
+            width: 180px;
+            height: auto;
+            transform: scaleX(-1);
+            animation: idleMovement 2s infinite ease-in-out;
+        }  
+
+        @keyframes idleMovement {
+            0%, 100% {
+                transform: scaleX(-1) translateY(0);
+            }
+            50% {
+                transform: scaleX(-1) translateY(-10px);
+            }
+        }
+
+        /* Talking K8 image */
+        .character {
+            position: absolute;
+            left: 160px;  
+            top: 170px;   
+            width: 100px; 
+            height: auto;
+            transform: scaleX(-1);
+        }
+
+        /* vix speech box */
+        .bottom-box-k8 {
+            position: absolute;
+            bottom: 13px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%; 
+            height: 55px; 
+            background: #1f2244;
+            border: 3px solid #d86a85;
+            border-radius: 20px;
+            color: white;
+            font-family: 'Jersey 25', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            text-align:center;
+            display: flex;  /* Always visible immediately */
+            align-items:center;
+            justify-content: center;
+            padding-bottom: 3px;
+            white-space: nowrap; /* Prevents wrapping of text */
+        }
+
+        /* Space between k8 and text */
+        .bottom-box-k8 i {
+            padding-right: 15px; 
+            color: #d86a85;
+        }
+
+        .health-bar {
+            position: absolute;
+            left: 770px;
+            top: 100px;
+            width: 160px;
+            height: 20px;
+            border-radius: 10px;
+            border: 2px solid black;
+            background: linear-gradient(to right, yellow 67%, transparent 33%);
+            animation: idleMovement 2s infinite ease-in-out;
+        }
+
+        @keyframes idleMovement {
+            0%, 100% {
+                transform: scaleX(-1) translateY(0);
+            }
+            50% {
+                transform: scaleX(-1) translateY(-10px);
+            }
+        }
+
+         /* Animation for the suit */
+@keyframes fadeInPopUp {
+    0% { 
+        opacity: 0; 
+        transform: scale(0.8); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1); 
+    }
+}
+
+/* Idle animation for the suit (up and down) */
+@keyframes idleUpDown {
+    0% {
+        transform: translateY(0); /* Starting position */
+    }
+    50% {
+        transform: translateY(-10px); /* Move up */
+    }
+    100% {
+        transform: translateY(0); /* Move back down */
+    }
+}
+
+/* Apply the animation to the suit image */
+.suit {
+    position: absolute;
+    left: 300px;
+    top: 160px;
+    width: 100px;
+    height: auto;
+    opacity: 0;  
+    animation: fadeInPopUp 1s ease-in-out forwards 1s, idleUpDown 2s ease-in-out infinite; /* Fade in and then idle animation */
+}
+    </style>
+    
+</head>
+
+
+<body>
+    <div class="scene" id="scene">
+        <img src="player.png" alt="You" class="player">
+        <img src="v1x.png" alt="V1X" class="vix">
+        <img src="suit.png" alt="Virus Suit" class="suit">
+        <img src="talking-k8.png" alt="K8" class="character">
+        <div class="health-bar"></div>
+        <div class="bottom-box-k8" id="speech-box">
+            <i>K8:</i><span id="typing-text"></span>
+        </div>
+    </div>
+
+    <script>
+        // Function to simulate the typing effect
+        function startTypingEffect() {
+            const text = "Correct! Click the virus suit to put it on.";
+            let index = 0;
+            const typingTextElement = document.getElementById("typing-text");
+
+            // Typing effect function
+            const typingInterval = setInterval(() => {
+                typingTextElement.textContent += text[index];
+                index++;
+                
+                // Stop the interval when the text is fully typed
+                if (index === text.length) {
+                    clearInterval(typingInterval);
+                }
+            }, 50); // Adjust typing speed (50ms between each character)
+        }
+
+        setTimeout(() => {
+            startTypingEffect();
+        }, 1000); // 3000 milliseconds = 3 seconds delay before typing starts
+    </script>
+
+    <!-- Lead to next page -->
+    <script>
+        document.querySelector(".scene").addEventListener("click", function() {
+            window.location.href = "37.html";
+        });
+    </script>
+    
+
+
+</body>
+</html>

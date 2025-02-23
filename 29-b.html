@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=960, initial-scale=1.0">
+    <title>Mix Healing Potion</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Jersey+25&family=Tiny5&family=Titillium+Web:ital,wght@0,200;0,300;1,200;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        /* Set the 960x540 px area */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: left;
+            align-items: top;
+            height: 100vh;
+            background-color: white; 
+        }
+
+        /* Main wrapper with fixed size */
+        .scene {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            background-color: #c0d1cc;
+            background-size: cover;
+        }
+
+        /* old pc positioning */
+        .scene img {
+            position: absolute;
+            top: 44%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 530px;
+            height: auto;
+        }
+
+        /* Centered text in pc */
+        .centered-text {
+            position: absolute;
+            top: 25%;
+            left: 36%;
+            width: 230px;
+            font-family: 'Jersey 25', sans-serif;
+            font-size: 16px;
+            color: white;
+            opacity: 0.8;
+            padding: 10px 20px;
+            letter-spacing: 1px;
+            border-radius: 15px;
+            text-align: center;
+            transition: opacity 1s ease-in-out; 
+        }
+
+        /* K8 speech box */
+        .bottom-box-k8 {
+            position: absolute;
+            bottom: 13px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%; 
+            height: 55px; 
+            background: #1f2244;
+            border: 3px solid #d86a85;
+            border-radius: 20px;
+            color: white;
+            font-family: 'Jersey 25', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            text-align:center;
+            display: flex;  /* Always visible immediately */
+            align-items:center;
+            justify-content: center;
+            padding-bottom: 3px;
+            white-space: nowrap; /* Prevents wrapping of text */
+        }
+
+        /* Space between K8 and text */
+        .bottom-box-k8 i {
+            padding-right: 15px; 
+            color: #d86a85;
+        }
+
+        /* Rounded rectangles for points */
+        .rounded-rectangle {
+            position: absolute;
+            width: 300px;
+            padding: 15px;
+            background: #d86a85;
+            color: #1f2244;
+            font-family: 'Jersey 25', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            text-align: center;
+            border-radius: 20px;
+            opacity: 0; 
+            transition: opacity 1s ease-in; 
+        }
+
+        .rectangle1 { top: 20%; left: 20px; }
+        .rectangle2 { top: 40%; left: 20px; }
+        .rectangle3 { top: 30%; right: 20px; }
+
+
+    </style>
+    
+</head>
+
+<body>
+
+    <div class="scene">
+        <img src="old-pc.gif" alt="Old PC">
+        <div class="centered-text" id="text-change">
+            Give me recipe ideas for a celebration meal.
+        </div>
+        <div class="bottom-box-k8" id="speech-box">
+            <i>K8:</i><span id="typing-text"></span>
+        </div>
+         <!-- Rounded rectangles -->
+         <div class="rounded-rectangle rectangle1">Use natural language and express thoughts in full sentences</div>
+         <div class="rounded-rectangle rectangle2">Be specific and iterate, providing as much context as possible</div>
+         <div class="rounded-rectangle rectangle3">Be concise and clear, keeping the conversation going by fine-tuning prompts and using follow-up prompts to get better responses</div>          
+    </div>
+
+    <script>
+        setTimeout(() => {
+    // Fade out effect before changing the text
+    const centeredText = document.getElementById("text-change");
+    centeredText.style.opacity = "0";  // Start fading out
+    
+    setTimeout(() => {
+        // Change the text content after the fade-out
+        centeredText.textContent = "Suggest easy, delicious recipes for a celebration meal after defeating my enemy V1X. Include bold flavors and a fun dessert!";
+        
+        // Fade in effect
+        centeredText.style.opacity = "1";  // Start fading in
+    }, 1000); // Wait for 1 second before changing the text
+}, 4000); 
+    </script>
+
+    <script>
+        // Function to simulate the typing effect
+        function startTypingEffect() {
+            const text = "Wrong! The other option was right. When writing a good prompt, we should...";
+            let index = 0;
+            const typingTextElement = document.getElementById("typing-text");
+
+            // Typing effect function
+            const typingInterval = setInterval(() => {
+                typingTextElement.textContent += text[index];
+                index++;
+                
+                
+                if (index === text.length) {
+                    clearInterval(typingInterval);
+                }
+            }, 50); 
+        }
+
+        setTimeout(() => {
+            startTypingEffect();
+        }, 1000); // 1000 milliseconds = 1 second delay before typing starts
+
+        // Fade in effect for rectangles
+        function fadeInElements() {
+            const rectangles = document.querySelectorAll(".rounded-rectangle");
+            rectangles.forEach((rect, index) => {
+                setTimeout(() => {
+                    rect.style.opacity = "1";
+                }, (index + 1) * 1000); // 1s delay between each appearing
+            });
+        }
+
+        setTimeout(() => {
+            fadeInElements();
+        }, 2500); 
+    </script>
+    
+    <!-- Lead to next page -->
+    <script>
+        document.querySelector(".scene").addEventListener("click", function() {
+            window.location.href = "30.html";
+        });
+    </script>
+    
+
+</body>
+</html>

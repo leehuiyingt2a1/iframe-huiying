@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=960, initial-scale=1.0">
+    <title>Intro</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Jersey+25&family=Tiny5&family=Titillium+Web:ital,wght@0,200;0,300;1,200;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        /* Set the 960x540 px area */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: left;
+            align-items: top;
+            height: 100vh;
+            background-color: white; 
+        }
+
+        /* Main wrapper with fixed size */
+        .scene {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            background: url('are-you-awake.png') no-repeat center center;
+            background-size: cover;
+        }
+
+        /* Talking K8 image */
+        .character {
+            position: absolute;
+            left: 500px;  
+            top: 200px;   
+            width: 150px; 
+            height: auto;
+        }
+
+        /* Speech bubble */
+        .speech-box {
+            position: absolute;
+            left: 550px;  
+            top: 120px;   
+            width: 200px;
+            padding: 15px;
+            background: #57a0d3;
+            border-radius: 20px;
+            color: white;
+            font-family: 'Jersey 25', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            text-align: center;
+            position: relative; /* Positioning of tail */
+                animation: fadeIn 0.5s ease-out forwards, float 1s ease-in-out infinite;
+                opacity: 0;
+        }
+
+        /* Speech bubble tail */
+        .speech-box::before {
+            content: "";
+            position: absolute;
+            bottom: -16px; 
+            left: 20px; 
+            width: 0;
+            height: 0;
+            border-left: 16px solid transparent;
+            border-right: 16px solid transparent;
+            border-top: 16px solid #57a0d3;
+                animation: fadeIn 0s ease-out forwards, float 1s ease-in-out infinite;
+                opacity: 0; 
+        }
+
+        /* Fade-in animation for speech bubble */
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+        }
+
+
+        /* Player image */
+        .player {
+            position: absolute;
+            left: -50px;
+            top: 60px;
+            width: 600px;
+            height: auto;
+            transform:scaleX(-1);
+        }
+
+         /* Player speech box */
+         .bottom-box {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%; 
+            height: 55px; 
+            background: black;
+            border: 0px solid #57a0d3;
+            border-radius: 20px;
+        }
+            
+        /* Colour K8 and V1X */
+        .k8 {
+            color: #18752e; 
+            font-weight: bold;
+        }
+
+        .v1x {
+            color: #cf0000; 
+            font-weight: bold;
+        }
+
+        /* Style for the "Let's go!" button */
+        .button {
+            position: absolute;
+            bottom: 20px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            padding: 15px 30px; 
+            background-color: rgba(72, 142, 255, 0.4); 
+            border: 3px solid rgb(255, 255, 255); 
+            border-radius: 60px; 
+            color: white; 
+            font-family: 'Tiny5', sans-serif; 
+            font-size: 40px;
+            text-align: center;
+            cursor: pointer; /* Change cursor to indicate it's clickable */
+            transition: background-color 0.3s ease; /* Smooth hover effect */
+            opacity: 0; /* Start as invisible */
+            transform: translateX(-50%) scale(0); /* Start as scaled down */
+            pointer-events: none; /* Disable clicking initially */
+        }
+
+        /* Show button with pointer-events enabled */
+        .button.show {
+            animation: fadeInPopUp 1s forwards;
+            pointer-events: auto; /* Enable interactions once visible */
+        }
+
+        /* Button hover effect */
+        .button:hover {
+            background-color: rgba(0, 0, 255, 0.6); /* Darker blue on hover */
+        }
+
+        /* Animation for fading in and popping up button */
+        .button.show {
+            animation: fadeInPopUp 1s forwards;
+        }
+
+        @keyframes fadeInPopUp {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) scale(0); 
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1); 
+            }
+        }
+
+    </style>
+    
+</head>
+
+<script>
+    let clickCount = 0;
+
+    document.addEventListener("click", function() {
+        let speechBox = document.querySelector(".speech-box");
+        let button = document.querySelector(".button");
+
+        if (clickCount === 0) {
+            speechBox.innerHTML = "I'm <span class='k8'>K8</span>, I saved you from <span class='v1x'>V1X</span>, the bad AI that has pushed the world into chaos.";
+        } else if (clickCount === 1) {
+            speechBox.innerText = "Now quick, gear up and save us all! You're the only hope we have. Battle V1X and win!";
+        }
+
+        clickCount++; // Increase the count with each click
+    
+        // Show the button after the second click with a delay of 2 seconds
+    if (clickCount === 2) {
+            setTimeout(function() {
+                button.classList.add("show"); // Add class to trigger animation
+                button.style.pointerEvents = "auto"; // Enable the button after it becomes visible
+
+            // Add event listener to the button for redirection
+            button.addEventListener("click", function() {
+                window.location.href = "03.html"; 
+            });
+            }, 2000); // Delay the appearance by 2 seconds
+        }
+    });
+</script>
+
+
+<body>
+
+    <div class="scene">
+        <img src="talking-k8.png" alt="K8 Character" class="character">
+        <img src="player.png" alt="You" class="player">
+        <div class="speech-box">Thank goodness you're alive!</div>
+        <div class="bottom-box"></div>
+        <div class="button">Let's go!</div>
+    
+        </div>                      
+    </div>
+
+
+    <!-- Lead to next page -->
+    
+
+</body>
+</html>

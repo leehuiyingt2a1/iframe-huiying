@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=960, initial-scale=1.0">
+    <title>Gather Tools</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Jersey+25&family=Tiny5&family=Titillium+Web:ital,wght@0,200;0,300;1,200;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        /* Set the 960x540 px area */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: left;
+            align-items: top;
+            height: 100vh;
+            background-color: white; 
+        }
+
+        /* Main wrapper with fixed size */
+        .scene {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            background: url('brain-scan.gif') no-repeat center center;
+            background-size: cover;
+        }
+
+        /* Talking K8 image */
+        .character {
+            position: absolute;
+            left: 331px;  
+            top: 288px;   
+            width: 130px; 
+            height: auto;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Speech bubble */
+        .speech-box {
+            position: absolute;
+            left: 360px;  
+            top: 200px;   
+            width: 200px;
+            padding: 15px;
+            background: #57a0d3;
+            border-radius: 20px;
+            color: white;
+            font-family: 'Jersey 25', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            text-align: center;
+            position: relative; /* Positioning of tail */
+        }
+
+        /* Speech bubble tail */
+        .speech-box::before {
+            content: "";
+            position: absolute;
+            bottom: -16px; 
+            left: 20px; 
+            width: 0;
+            height: 0;
+            border-left: 16px solid transparent;
+            border-right: 16px solid transparent;
+            border-top: 16px solid #57a0d3;
+        }
+
+        /* Player image */
+        .player {
+            position: absolute;
+            left: 695px;
+            top: 135px;
+            width: 300px;
+            height: auto;
+            transform: rotate(90deg);
+            filter: hue-rotate(140deg) saturate(0.8) brightness(0.85);
+            animation: vibrate 0.1s infinite linear;
+        }
+
+        @keyframes vibrate {
+            0% { transform: rotate(90deg) translate(0, 0); }
+            25% { transform: rotate(90deg) translate(2px, -2px); }
+            50% { transform: rotate(90deg) translate(-2px, 2px); }
+            75% { transform: rotate(90deg) translate(2px, 2px); }
+            100% { transform: rotate(90deg) translate(-2px, -2px); }
+        }
+
+        /* Colour text */
+        .CREATE {
+            color: darkblue; 
+            font-weight: bold;
+        }
+    
+    </style>
+    
+</head>
+
+<body>
+
+    <div class="scene" onclick="changeSpeechBubble()">
+        <img src="talking-k8.png" alt="K8 Character" class="character">
+        <div id="speech-box" class="speech-box">You're right!</div>
+        <img src="player.png" alt="You" class="player">
+    </div>
+
+    <script>
+        let clickCount = 0; // To track how many times the scene has been clicked
+        const speechBox = document.getElementById('speech-box'); // Reference to the speech box
+
+        function changeSpeechBubble() {
+            clickCount++;
+
+            if (clickCount === 1) {
+                speechBox.innerText = "Actually, every one of those examples uses Generative AI in some way.";
+            } else if (clickCount === 2) {
+                speechBox.innerHTML = "Its main use is to <span class='CREATE'>create entirely new content.</span>";
+            } else if (clickCount === 3) {
+                window.location.href = '06.html'; // Redirect to 06.html after the third click
+            }
+        }
+    </script>
+    <!-- Lead to next page -->
+
+
+</body>
+</html>

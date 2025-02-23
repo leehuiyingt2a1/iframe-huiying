@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=960, initial-scale=1.0">
+    <title>Obtain Virus Suit</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Jersey+25&family=Tiny5&family=Titillium+Web:ital,wght@0,200;0,300;1,200;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        /* Set the 960x540 px area */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: left;
+            align-items: top;
+            height: 100vh;
+            background-color: white; 
+        }
+
+        /* Main wrapper with fixed size */
+        .scene {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            background: url('suit-room.png') no-repeat center center;
+            background-size: cover;
+        }
+
+        /* Talking K8 image */
+        .character {
+            position: absolute;
+            left: 680px;  
+            top: 288px;   
+            width: 140px; 
+            height: auto;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Speech bubble */
+        .speech-box {
+            position: absolute;
+            left: 680px;  
+            top: 210px;   
+            width: 200px;
+            padding: 15px;
+            background: #57a0d3;
+            border-radius: 20px;
+            color: white;
+            font-family: 'Jersey 25', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            text-align: center;
+            position: relative; /* Positioning of tail */
+            opacity: 0; 
+             animation: fadeIn 0.5s ease-in-out 0.5s forwards; 
+        }
+
+        /* Speech bubble tail */
+        .speech-box::before {
+            content: "";
+            position: absolute;
+            bottom: -16px; 
+            left: 20px; 
+            width: 0;
+            height: 0;
+            border-left: 16px solid transparent;
+            border-right: 16px solid transparent;
+            border-top: 16px solid #57a0d3;
+        }
+
+        /* Player image */
+        .player {
+            position: absolute;
+            left: 600px;
+            top: 210px;
+            width: 500px;
+            height: auto;
+        }
+
+
+        /* Triangle */
+        .triangle {
+            top: 290px;
+            left: 230px;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            background-color: rgba(255, 0, 0, 0.5); /* Translucent red */
+            display: block;
+            animation: blink 1s infinite alternate;
+        }
+
+        /* Exclamation mark */
+        .triangle::before {
+            content: "!";
+            font-size: 50px;
+            font-family: 'Jersey 25', sans-serif;
+            font-weight: bold;
+            color: white;
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Blinking animation */
+        @keyframes blink {
+            0% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+    
+    </style>
+    
+</head>
+
+
+<body onclick="changeText()">
+    <div class="scene">
+        <img src="talking-k8.png" alt="K8 Character" class="character">
+        <div class="speech-box" id="speech">This is the last virus [risk] you need to clear. You got this!</div>
+        <img src="player.png" alt="You" class="player">
+        <div class="triangle" id="warning" onclick="redirectToNextPage()"></div>
+    </div>
+
+    <script>
+        function redirectToNextPage() {
+            window.location.href = "14.html";
+        }
+    </script>
+
+    <!-- Lead to next page -->
+
+
+</body>
+</html>

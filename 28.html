@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=960, initial-scale=1.0">
+    <title>Mix Healing Potion</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Jersey+25&family=Tiny5&family=Titillium+Web:ital,wght@0,200;0,300;1,200;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        /* Set the 960x540 px area */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: left;
+            align-items: top;
+            height: 100vh;
+            background-color: white; 
+        }
+
+        /* Main wrapper with fixed size */
+        .scene {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            background-color: #c0d1cc;
+            background-size: cover;
+        }
+
+        /* old pc positioning */
+        .scene img {
+            position: absolute;
+            top: 44%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 530px;
+            height: auto;
+        }
+
+        /* K8 speech box */
+        .bottom-box-k8 {
+            position: absolute;
+            bottom: 13px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%; 
+            height: 55px; 
+            background: #1f2244;
+            border: 3px solid #d86a85;
+            border-radius: 20px;
+            color: white;
+            font-family: 'Jersey 25', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            text-align:center;
+            display: flex;  /* Always visible immediately */
+            align-items:center;
+            justify-content: center;
+            padding-bottom: 3px;
+            white-space: nowrap; /* Prevents wrapping of text */
+        }
+
+        /* Space between YOU and text */
+        .bottom-box-k8 i {
+            padding-right: 15px; 
+            color: #d86a85;
+        }
+
+        /* button aka rounded rectangles */
+        .option-box {
+            position: absolute;
+            top: 30%;
+            width: 200px;
+            height: 120px;
+            background: white;
+            border: 3px solid #57a0d3;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: 'Jersey 25', sans-serif;
+            letter-spacing: 1px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1f2244;
+            padding: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+            animation-delay: 2s;
+            cursor: pointer;
+        }
+
+        .option-box:hover {
+            background: #a8d6f8;
+        }
+
+        .left-box {
+            left: 5%;
+        }
+
+        .right-box {
+            right: 5%;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+
+    </style>
+    
+</head>
+
+<body>
+
+    <div class="scene">
+        <img src="old-pc.gif" alt="Old PC">
+        <div class="bottom-box-k8" id="speech-box">
+            <i>K8:</i><span id="typing-text"></span>
+        </div>            
+
+        <!--  rounded rectangles aka buttons-->
+        <div class="option-box left-box" onclick="window.location.href='29-b.html'">
+            Give me recipe ideas for a celebration meal.
+        </div>
+        <div class="option-box right-box" onclick="window.location.href='29-a.html'">
+            Suggest easy, delicious recipes for a celebration meal after defeating my enemy V1X. Include bold flavors and a fun dessert!
+        </div>
+    </div>
+
+    <script>
+        // Function to simulate the typing effect
+        function startTypingEffect() {
+            const text = "Which do you think is the better prompt to use?";
+            let index = 0;
+            const typingTextElement = document.getElementById("typing-text");
+
+            // Typing effect function
+            const typingInterval = setInterval(() => {
+                typingTextElement.textContent += text[index];
+                index++;
+                
+                // Stop the interval when the text is fully typed
+                if (index === text.length) {
+                    clearInterval(typingInterval);
+                }
+            }, 50); // Adjust typing speed (50ms between each character)
+        }
+
+        setTimeout(() => {
+            startTypingEffect();
+        }, 1000); // 3000 milliseconds = 3 seconds delay before typing starts
+    </script>
+    
+    <!-- Lead to next page -->
+    
+
+</body>
+</html>
